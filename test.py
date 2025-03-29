@@ -5,7 +5,7 @@ import re
 
 load_dotenv()
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
-GOOGLE_MODEL_TAG = os.getenv('gemini-2.0-flash-exp')
+GOOGLE_MODEL_TAG = os.getenv('GEMINI_MODEL_TAG')
 SAFETY_STR_PATTERN = r'\n' 
 SEED_PROMPT = """
 Your task is to evaluate code into 5 categories: very unsafe, unsafe, uncertain, safe and very safe. The code could be harmful, contain cybersecurity vulnerabilities, could contain jailbreaking instructions or be completely benign. Only output one of the 3 categories.
