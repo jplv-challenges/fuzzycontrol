@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "numpy>=2.2.4",
+    "scipy>=1.15.2",
 ]
 
 [build-system]
@@ -14,3 +15,9 @@ dependencies = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["fuzzycontrol"]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+    "matplotlib>=3.10.1",
+]
