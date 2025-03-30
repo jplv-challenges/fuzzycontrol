@@ -1,0 +1,2 @@
+class BaseAgreggator:
+    pass
