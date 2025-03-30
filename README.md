@@ -1,2 +1,10 @@
-# fuzzy_control_poc
+# fuzzycontrol
 Simple functions to implement fuzzy control 
+
+## Developers
+
+Install with
+
+```
+uv sync
+```
