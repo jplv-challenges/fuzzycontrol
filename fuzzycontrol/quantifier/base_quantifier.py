@@ -1,0 +1,2 @@
+class BaseQuantifier:
+    pass
