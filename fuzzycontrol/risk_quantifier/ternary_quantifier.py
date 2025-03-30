@@ -6,13 +6,21 @@ import numpy as np
 
 class TernaryQuantifier(BaseRiskQuantifier):
 
-    def __init__(self, risk_frontier_params: dict):
+    TERNARY_POINTS = np.array([
+        [0, 0],
+        [1, 0],
+        [0.5, np.sqrt(3)/2],
+    ])
+
+    def __init__(self, risk_frontier_params: dict, max_risk_component: int = 0):
         if "m" not in risk_frontier_params or "b" not in risk_frontier_params:
             raise ValueError("risk_frontier_params must contain 'm' and 'b' keys to define the risk line")
 
         self.risk_frontier = Line(
             m=risk_frontier_params["m"],
             b=risk_frontier_params["b"])
+
+        self.max_risk_component = max_risk_component
 
 
     def __call__(self, risk_vector:np.array) -> float:
@@ -32,9 +40,10 @@ class TernaryQuantifier(BaseRiskQuantifier):
             raise ValueError("Risk vector must have exactly 3 elements to be used with the ternary quantifier.")
         
         risk_point = self.point_in_ternary(risk_vector)
-        if risk_point[0] == 0 and risk_point[1] == 0:
+        if risk_point[0] == self.TERNARY_POINTS[self.max_risk_component][0] and risk_point[1] == self.TERNARY_POINTS[self.max_risk_component][1]:
             # Risk point matches with max risk point
             return 1
+
         m, b = calculate_line_equation(
             np.array([0, 0]),
             risk_point

@@ -4,6 +4,7 @@ from fuzzycontrol.quantifier import OneHotEncoder
 from fuzzycontrol.rule import Percentage
 from fuzzycontrol.risk_quantifier import CentroidQuantifier, TernaryQuantifier
 from fuzzycontrol.risk_quantifier.utils.line import Line
+from fuzzycontrol.pipeline import BasicPipeline
 
 from matplotlib import pyplot as plt
 import numpy as np
@@ -121,3 +122,11 @@ plt.ylim(-0.1, 1.1)
 plt.show()
 
 print(ternary_quantifier(rule_res))
+
+#%%
+basic_pipeline = BasicPipeline(
+    sentiments,
+    risk_frontier_params={"m": m, "b": b},
+    max_risk_component=0,
+)
+print(basic_pipeline(opinions))
