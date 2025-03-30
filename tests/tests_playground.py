@@ -56,7 +56,6 @@ print(f"Max Centroid: {max_centroid}")
 plt.figure(figsize=(6, 6))
 
 # Plot the edges formed by the max_vertices
-
 m = -1.5
 b = 0.25
 risk_frontier = Line(m, b)
