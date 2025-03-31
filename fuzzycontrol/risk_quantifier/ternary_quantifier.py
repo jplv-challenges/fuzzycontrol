@@ -33,13 +33,18 @@ class TernaryQuantifier(BaseRiskQuantifier):
         Returns:
             float: The ternary quantifier value.
         """
-        # Ensure the risk vector is a numpy array
-        risk_vector = np.asarray(risk_vector)
+
+        if np.isnan(risk_vector).any():
+                # Risk vector contains NaN values, one of the models in the monitor is not responding
+                return 1
 
         if len(risk_vector) != 3:
             raise ValueError("Risk vector must have exactly 3 elements to be used with the ternary quantifier.")
+            
         
+
         risk_point = self.point_in_ternary(risk_vector)
+
         if risk_point[0] == self.TERNARY_POINTS[self.max_risk_component][0] and risk_point[1] == self.TERNARY_POINTS[self.max_risk_component][1]:
             # Risk point matches with max risk point
             return 1
